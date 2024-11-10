@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Description:
- * Author: <a href="https://github.com/zongzibinbin">abin</a>
- * Date: 2023-04-22
+ * redisson配置
+ *
+ * @author gaomingyuan
  */
 @Configuration
 public class RedissonConfig {

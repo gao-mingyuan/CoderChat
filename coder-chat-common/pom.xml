@@ -18,7 +18,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.version>1.18.10</lombok.version>
+        <lombok.version> 1.18.30</lombok.version>
         <fastjson2.version>2.0.42</fastjson2.version>
         <hutool.version>5.8.22</hutool.version>
         <guava.version>32.1.3-jre</guava.version>
@@ -26,31 +26,12 @@
 
     <modules>
         <module>coder-chat-base</module>
-        <!--        <module>nft-turbo-api</module>-->
-        <!--        <module>nft-turbo-lock</module>-->
-        <!--        <module>nft-turbo-limiter</module>-->
-        <!--        <module>nft-turbo-web</module>-->
         <module>coder-chat-datasource</module>
-        <!--        <module>nft-turbo-rpc</module>-->
         <module>coder-chat-cache</module>
-        <!--        <module>nft-turbo-file</module>-->
-        <!--        <module>nft-turbo-sms</module>-->
-        <!--        <module>nft-turbo-job</module>-->
-        <!--        <module>nft-turbo-config</module>-->
-        <!--        <module>nft-turbo-sa-token</module>-->
-        <!--        <module>nft-turbo-mq</module>-->
-        <!--        <module>nft-turbo-es</module>-->
-        <!--        <module>nft-turbo-seata</module>-->
-        <!--        <module>nft-turbo-order-client</module>-->
     </modules>
 
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -83,19 +64,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.14.0</version>
-        </dependency>
-
-        <!--    TEST    -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>

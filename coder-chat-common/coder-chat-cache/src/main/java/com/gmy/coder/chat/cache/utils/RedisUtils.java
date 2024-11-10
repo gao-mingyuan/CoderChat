@@ -16,6 +16,11 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+/**
+ * redis操作工具类
+ *
+ * @author gaomingyuan
+ */
 @Slf4j
 public class RedisUtils {
 

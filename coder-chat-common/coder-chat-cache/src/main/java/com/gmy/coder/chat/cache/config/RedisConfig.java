@@ -13,6 +13,11 @@ import org.springframework.util.Assert;
 
 import java.util.Objects;
 
+/**
+ * redis配置
+ *
+ * @author gaomingyuan
+ */
 @Configuration
 public class RedisConfig {
 

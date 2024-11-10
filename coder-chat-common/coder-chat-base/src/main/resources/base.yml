@@ -1,0 +1,23 @@
+# 这是项目的需要改动的所有配置的地址的汇总，需要改哪个中间件的地址，在本文件中修改即可！
+coderChat:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+  mysql:
+    ip: 127.0.0.1
+    port: 3307
+    db: test
+    username: root
+    password: 'root'
+
+
+
+
+dubbo:
+  application:
+    name: coder-chat-server
+  registry:
+    address: nacos://192.168.0.1:8848  # 这是跑单元测试的时候需要用到nacos地址，也可以把对应的服务mock调，使用@MockBean注解即可
+  consumer:
+    check: false

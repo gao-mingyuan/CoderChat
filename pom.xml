@@ -1,68 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.gmy</groupId>
-	<artifactId>CoderChat</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<name>CoderChat</name>
-	<packaging>pom</packaging>
-	<description>码农聊天室</description>
+    <groupId>com.gmy</groupId>
+    <artifactId>CoderChat</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>CoderChat</name>
+    <packaging>pom</packaging>
+    <description>码农聊天室</description>
 
-	<properties>
-		<java.version>21</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>21</java.version>
-		<spring-boot.version>3.2.2</spring-boot.version>
-	</properties>
+    <properties>
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>21</java.version>
+        <spring-boot.version>3.2.2</spring-boot.version>
+        <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <spring-cloud-alibaba.version>2023.0.1.2</spring-cloud-alibaba.version>
+        <dubbo.version>3.2.10</dubbo.version>
+    </properties>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.2</version>
-		<relativePath/>
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.2</version>
+        <relativePath/>
+    </parent>
 
-	<modules>
-		<module>coder-chat-common</module>
-		<!--        <module>nft-turbo-auth</module>-->
-		<!--        <module>nft-turbo-gateway</module>-->
-		<!--        <module>nft-turbo-business</module>-->
-		<!--        <module>nft-turbo-admin</module>-->
-	</modules>
+    <modules>
+        <module>coder-chat-common</module>
+        <module>coder-chat-server</module>
+        <!--        <module>nft-turbo-auth</module>-->
+        <!--        <module>nft-turbo-gateway</module>-->
+        <!--        <module>nft-turbo-business</module>-->
+        <!--        <module>nft-turbo-admin</module>-->
+    </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<!--            <dependency>-->
-			<!--                <groupId>org.springframework.boot</groupId>-->
-			<!--                <artifactId>spring-boot-starter</artifactId>-->
-			<!--            </dependency>-->
+    <dependencyManagement>
+        <dependencies>
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-starter</artifactId>-->
+            <!--            </dependency>-->
 
-			<!--            <dependency>-->
-			<!--                <groupId>org.springframework.boot</groupId>-->
-			<!--                <artifactId>spring-boot-starter-test</artifactId>-->
-			<!--                <scope>test</scope>-->
-			<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-starter-test</artifactId>-->
+            <!--                <scope>test</scope>-->
+            <!--            </dependency>-->
 
-			<dependency>
-				<groupId>com.gmy</groupId>
-				<artifactId>coder-chat-base</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.gmy</groupId>
-				<artifactId>coder-chat-cache</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.gmy</groupId>
-				<artifactId>coder-chat-datasource</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-		</dependencies>
-	</dependencyManagement>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-datasource</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-websocket</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-im</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-logic</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-router</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

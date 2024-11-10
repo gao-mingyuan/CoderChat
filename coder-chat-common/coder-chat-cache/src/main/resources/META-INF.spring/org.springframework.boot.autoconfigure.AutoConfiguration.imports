@@ -1,1 +1,3 @@
 com.gmy.coder.chat.cache.config.CacheConfiguration
+com.gmy.coder.chat.cache.config.RedisConfig
+com.gmy.coder.chat.cache.config.RedissonConfig

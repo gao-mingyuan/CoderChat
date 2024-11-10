@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    #运行的环境
+    active: test
+  application:
+    name: @application.name@
+  config:
+    import: classpath:cache.yml,classpath:datasource.yml
+
