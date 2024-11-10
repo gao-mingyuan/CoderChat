@@ -25,9 +25,11 @@
     </properties>
 
     <modules>
+        <module>coder-chat-api</module>
         <module>coder-chat-base</module>
         <module>coder-chat-datasource</module>
         <module>coder-chat-cache</module>
+        <module>coder-chat-config</module>
     </modules>
 
 

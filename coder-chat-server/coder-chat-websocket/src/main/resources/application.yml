@@ -5,5 +5,5 @@ spring:
   application:
     name: @application.name@
   config:
-    import: classpath:cache.yml,classpath:datasource.yml
+    import: classpath:base.yml,classpath:cache.yml,classpath:datasource.yml
 

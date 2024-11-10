@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: ${coderChat.nacos.server.url}
+      config:
+        server-addr: ${coderChat.nacos.server.url}
+        file-extension: properties
+        name: ${spring.application.name}

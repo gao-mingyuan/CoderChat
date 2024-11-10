@@ -1,0 +1,39 @@
+logging:
+  level:
+    com.alibaba.nacos: DEBUG
+    org.springframework.cloud: DEBUG
+
+spring:
+  application:
+    name: @application.name@
+  config:
+    import: classpath:base.yml,classpath:cache.yml,classpath:config.yml
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_UNIQUE
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedHeaders: '*'
+            allowedMethods: '*'
+            allowedOrigins: '*'
+      routes:
+#        - id: coder-chat-auth
+#          uri: lb://coder-chat-auth
+#          predicates:
+#            - Path=/auth/**,/token/**
+        - id: coder-chat-im
+          uri: lb://coder-chat-im
+          predicates:
+            - Path=/im/**
+        - id: coder-chat-logic
+          uri: lb://coder-chat-logic
+          predicates:
+            - Path=/logic/**
+        - id: coder-chat-router
+          uri: lb://coder-chat-router
+          predicates:
+            - Path=/router/**
+server:
+  port: 8081
