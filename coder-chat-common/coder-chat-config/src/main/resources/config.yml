@@ -2,7 +2,6 @@ spring:
   cloud:
     nacos:
       discovery:
-        enabled: true
         server-addr: ${coderChat.nacos.server.url}
       config:
         server-addr: ${coderChat.nacos.server.url}
