@@ -1,14 +1,15 @@
+logging:
+  level:
+    com.alibaba.nacos: DEBUG
+    org.springframework.cloud: DEBUG
 spring:
-  profiles:
-    #运行的环境
-    active: test
   application:
     name: @application.name@
   config:
-    import: classpath:base.yml,classpath:datasource.yml,classpath:cache.yml
+    import: classpath:base.yml,classpath:cache.yml,classpath:config.yml
 
 server:
-  port: 8083
+  port: 8082
 
 #dubbo:
 #  protocol:

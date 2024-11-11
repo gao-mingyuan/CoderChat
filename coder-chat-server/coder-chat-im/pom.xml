@@ -22,11 +22,6 @@
 
 
     <dependencies>
-        <!--    bootstrap     -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -34,18 +29,22 @@
 
         <dependency>
             <groupId>com.gmy</groupId>
-            <artifactId>coder-chat-base</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.gmy</groupId>
             <artifactId>coder-chat-cache</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.gmy</groupId>
+            <artifactId>coder-chat-api</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.gmy</groupId>
-            <artifactId>coder-chat-datasource</artifactId>
+            <artifactId>coder-chat-config</artifactId>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.gmy</groupId>-->
+<!--            <artifactId>coder-chat-datasource</artifactId>-->
+<!--        </dependency>-->
 
         <!--  TEST  -->
         <dependency>
@@ -68,9 +67,20 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <skip>true</skip>
+                    <!--                    <skip>true</skip>-->
+                    <mainClass>com.gmy.coder.chat.im.CoderChatImApplication</mainClass>
                 </configuration>
+
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
         </plugins>
     </build>
 
