@@ -103,6 +103,11 @@
             </dependency>
             <dependency>
                 <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gmy</groupId>
                 <artifactId>coder-chat-datasource</artifactId>
                 <version>${project.version}</version>
             </dependency>

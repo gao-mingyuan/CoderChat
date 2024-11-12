@@ -23,10 +23,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>com.gmy</groupId>
+            <artifactId>coder-chat-config</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.gmy</groupId>
             <artifactId>coder-chat-cache</artifactId>
@@ -35,10 +34,9 @@
             <groupId>com.gmy</groupId>
             <artifactId>coder-chat-api</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.gmy</groupId>
-            <artifactId>coder-chat-config</artifactId>
+            <artifactId>coder-chat-web</artifactId>
         </dependency>
 
 <!--        <dependency>-->
