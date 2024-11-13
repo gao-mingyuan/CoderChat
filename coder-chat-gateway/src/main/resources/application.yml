@@ -11,6 +11,7 @@ spring:
     gateway:
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_UNIQUE
+        - StripPrefix=1 # 去掉路径前缀的数量
       globalcors:
         cors-configurations:
           '[/**]':

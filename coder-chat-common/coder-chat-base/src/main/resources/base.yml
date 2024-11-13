@@ -15,7 +15,7 @@ coderChat:
     password: 'root'
   dubbo:
     nacos:
-      namespace: rpc
+      namespace: c3724e92-df9f-4a46-b9cf-23052660fe36
       group: dubbo
 
 

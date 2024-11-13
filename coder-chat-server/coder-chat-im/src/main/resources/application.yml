@@ -1,13 +1,16 @@
 logging:
   level:
     root: info
+    #关闭nacos心跳日志
+    com.alibaba.nacos.client.*: WARN
+
 
 
 spring:
   application:
     name: @application.name@
   config:
-    import: classpath:base.yml,classpath:cache.yml,classpath:config.yml
+    import: classpath:base.yml,classpath:cache.yml,classpath:config.yml,classpath:rpc.yml
 
 server:
   port: 8181

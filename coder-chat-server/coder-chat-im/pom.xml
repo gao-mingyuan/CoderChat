@@ -38,11 +38,14 @@
             <groupId>com.gmy</groupId>
             <artifactId>coder-chat-web</artifactId>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.gmy</groupId>-->
-<!--            <artifactId>coder-chat-datasource</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.gmy</groupId>
+            <artifactId>coder-chat-rpc</artifactId>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.gmy</groupId>-->
+        <!--            <artifactId>coder-chat-datasource</artifactId>-->
+        <!--        </dependency>-->
 
         <!--  TEST  -->
         <dependency>
@@ -64,8 +67,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
                 <configuration>
-                    <!--                    <skip>true</skip>-->
+                    <skip>true</skip>
                     <mainClass>com.gmy.coder.chat.im.CoderChatImApplication</mainClass>
                 </configuration>
 
