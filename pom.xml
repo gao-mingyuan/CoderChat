@@ -132,6 +132,11 @@
                 <artifactId>coder-chat-router</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-rpc</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

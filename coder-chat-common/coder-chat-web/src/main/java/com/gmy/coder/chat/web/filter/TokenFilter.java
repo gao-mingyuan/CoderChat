@@ -48,14 +48,14 @@ public class TokenFilter implements Filter {
             }
 
             // 校验Token的有效性
-            boolean isValid = checkTokenValidity(token);
-
-            if (!isValid) {
-                httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                httpResponse.getWriter().write("Invalid or expired token");
-                logger.error("token validate failed , pls check!");
-                return;
-            }
+//            boolean isValid = checkTokenValidity(token);
+//
+//            if (!isValid) {
+//                httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                httpResponse.getWriter().write("Invalid or expired token");
+//                logger.error("token validate failed , pls check!");
+//                return;
+//            }
 
             // Token有效，继续执行其他过滤器链
             chain.doFilter(request, response);

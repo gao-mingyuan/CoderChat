@@ -31,6 +31,7 @@
         <module>coder-chat-cache</module>
         <module>coder-chat-config</module>
         <module>coder-chat-web</module>
+        <module>coder-chat-rpc</module>
     </modules>
 
 
@@ -62,6 +63,11 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.9.20.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

@@ -10,7 +10,7 @@ spring:
     import: classpath:base.yml,classpath:cache.yml,classpath:config.yml
 
 server:
-  port: 8082
+  port: 8181
 
 #dubbo:
 #  protocol:

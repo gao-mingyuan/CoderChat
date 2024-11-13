@@ -13,6 +13,10 @@ coderChat:
     db: test
     username: root
     password: 'root'
+  dubbo:
+    nacos:
+      namespace: rpc
+      group: dubbo
 
 
 

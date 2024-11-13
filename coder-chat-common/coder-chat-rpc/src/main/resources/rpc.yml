@@ -1,0 +1,16 @@
+dubbo:
+  consumer:
+    timeout: 3000
+    check: false
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://${coderChat.nacos.server.url}
+    parameters:
+      namespace: ${coderChat.dubbo.nacos.namespace}
+      group: ${coderChat.dubbo.nacos.group}
+  application:
+    name: ${spring.application.name}
+    qos-enable: true
+    qos-accept-foreign-ip: false

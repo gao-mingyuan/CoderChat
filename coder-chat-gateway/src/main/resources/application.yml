@@ -35,4 +35,4 @@ spring:
           predicates:
             - Path=/router/**
 server:
-  port: 8080
+  port: 8081
