@@ -1,6 +1,8 @@
 logging:
   level:
+    org.springframework.cloud.gateway: DEBUG
     root: info
+
 
 spring:
   application:
@@ -35,5 +37,11 @@ spring:
           uri: lb://coder-chat-router
           predicates:
             - Path=/router/**
+        - id: coder-chat-websocket
+          uri: ws://192.168.1.9:809011
+          predicates:
+            - Path=/websocket/**
+          filters:
+            - name: WebSocketInstallRoutingFilter
 server:
   port: 8081
