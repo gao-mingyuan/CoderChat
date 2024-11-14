@@ -21,10 +21,10 @@ spring:
             allowedMethods: '*'
             allowedOrigins: '*'
       routes:
-#        - id: coder-chat-auth
-#          uri: lb://coder-chat-auth
-#          predicates:
-#            - Path=/auth/**,/token/**
+        #        - id: coder-chat-auth
+        #          uri: lb://coder-chat-auth
+        #          predicates:
+        #            - Path=/auth/**,/token/**
         - id: coder-chat-im
           uri: lb://coder-chat-im
           predicates:
@@ -38,7 +38,7 @@ spring:
           predicates:
             - Path=/router/**
         - id: coder-chat-websocket
-          uri: ws://192.168.1.9:809011
+          uri: no://op #这个uri没用 会被自定义过滤器替换掉
           predicates:
             - Path=/websocket/**
           filters:

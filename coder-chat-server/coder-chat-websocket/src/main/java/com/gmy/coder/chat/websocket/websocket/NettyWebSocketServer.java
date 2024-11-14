@@ -1,5 +1,6 @@
 package com.gmy.coder.chat.websocket.websocket;
 
+import com.gmy.coder.chat.api.websocket.constant.NettyConstant;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -25,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 public class NettyWebSocketServer {
-    public static final int WEB_SOCKET_PORT = 8090;
+    public static final int WEB_SOCKET_PORT = NettyConstant.WEB_SOCKET_PORT;
     public static final NettyWebSocketServerHandler NETTY_WEB_SOCKET_SERVER_HANDLER = new NettyWebSocketServerHandler();
     // 创建线程池执行器
     private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
