@@ -34,9 +34,6 @@ public class NettyWebSocketServer {
 
     /**
      * 启动 ws server
-     *
-     * @return
-     * @throws InterruptedException
      */
     @PostConstruct
     public void start() throws InterruptedException {

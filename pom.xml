@@ -19,6 +19,7 @@
         <spring-cloud.version>2023.0.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2023.0.1.2</spring-cloud-alibaba.version>
         <dubbo.version>3.2.10</dubbo.version>
+        <netty-all.version>4.1.76.Final</netty-all.version>
     </properties>
 
     <parent>
@@ -47,6 +48,12 @@
             <!--                <scope>test</scope>-->
             <!--            </dependency>-->
 
+            <!-- netty -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty-all.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
