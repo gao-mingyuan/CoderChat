@@ -1,10 +1,11 @@
-package com.gmy.coder.chat.gateway.routes;
+package com.gmy.coder.chat.gateway.filter;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import com.alibaba.nacos.client.naming.NacosNamingService;
 import com.gmy.coder.chat.api.websocket.constant.NettyConstant;
+import com.gmy.coder.chat.base.constant.AppNameConstant;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -53,9 +54,9 @@ public class WebSocketInstallRoutingFilter extends AbstractGatewayFilterFactory<
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
             try {
-                List<Instance> instances = nacosNamingService.getAllInstances("coder-chat-websocket");
+                List<Instance> instances = nacosNamingService.getAllInstances(AppNameConstant.WEBSOCKET);
 
-                //todo 选择连接数最少的
+                //todo 选择连接数最少的, 如果用户多端登录,分配到同一个服务
                 Instance selectedInstance = instances.isEmpty() ? null : instances.get(0);
 
                 //如果没有找到实例，可以抛出异常或返回错误
@@ -64,7 +65,7 @@ public class WebSocketInstallRoutingFilter extends AbstractGatewayFilterFactory<
                 }
 
                 //构建新的 WebSocket URI
-                String serviceUri = "ws://" + selectedInstance.getIp() + ":" + NettyConstant.WEB_SOCKET_PORT;
+                String serviceUri = "ws://" + selectedInstance.getIp() + ":" + NettyConstant.NETTY_PORT;
 
                 //获取Route信息并修改uri
                 Route currentRoute = exchange.getAttribute(GATEWAY_ROUTE_ATTR);

@@ -1,4 +1,4 @@
-package com.gmy.coder.chat.websocket.websocket;
+package com.gmy.coder.chat.websocket.server;
 
 import com.gmy.coder.chat.api.websocket.constant.NettyConstant;
 import io.netty.bootstrap.ServerBootstrap;
@@ -20,17 +20,20 @@ import io.netty.util.NettyRuntime;
 import io.netty.util.concurrent.Future;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@Configuration
-public class NettyWebSocketServer {
-    public static final int WEB_SOCKET_PORT = NettyConstant.WEB_SOCKET_PORT;
-    public static final NettyWebSocketServerHandler NETTY_WEB_SOCKET_SERVER_HANDLER = new NettyWebSocketServerHandler();
+@Component
+public class NettyServer {
+    @Resource
+    public NettyServerHandler NETTY_WEB_SOCKET_SERVER_HANDLER;
+
+    public static final int WEB_SOCKET_PORT = NettyConstant.NETTY_PORT;
     // 创建线程池执行器
-    private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-    private EventLoopGroup workerGroup = new NioEventLoopGroup(NettyRuntime.availableProcessors());
+    private final EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+    private final EventLoopGroup workerGroup = new NioEventLoopGroup(NettyRuntime.availableProcessors());
 
     /**
      * 启动 ws server
@@ -45,8 +48,8 @@ public class NettyWebSocketServer {
      */
     @PreDestroy
     public void destroy() {
-        Future<?> future = bossGroup.shutdownGracefully();
-        Future<?> future1 = workerGroup.shutdownGracefully();
+        Future<?> future = this.bossGroup.shutdownGracefully();
+        Future<?> future1 = this.workerGroup.shutdownGracefully();
         future.syncUninterruptibly();
         future1.syncUninterruptibly();
         log.info("关闭 ws server 成功");

@@ -1,6 +1,5 @@
-package com.gmy.coder.chat.websocket.client;
+package com.gmy.coder.chat.router.netty;
 
-import com.gmy.coder.chat.api.router.constant.RouterReqTypeEnum;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleState;
@@ -14,39 +13,30 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class NettyClientHandler extends SimpleChannelInboundHandler<String> {
+public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
     @Resource
-    private NettyClientService nettyClientService;
-
-    /**
-     * 连接建立完成
-     */
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        this.nettyClientService.added(ctx.channel());
-    }
+    private NettyServerService nettyServerService;
 
     /**
      * 心跳检查
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        if (evt instanceof IdleStateEvent event) {
-            if (event.state() == IdleState.WRITER_IDLE) {
-                // 发送心跳包给Router模块
-                ctx.writeAndFlush(RouterReqTypeEnum.HEARTBEAT.getType());
+        if (evt instanceof IdleStateEvent idleStateEvent) {
+            // 读空闲
+            if (idleStateEvent.state() == IdleState.READER_IDLE) {
+                ctx.channel().close();
             }
         }
         super.userEventTriggered(ctx, evt);
     }
 
     /**
-     * 处理从服务器接收到的消息
+     * 连接建立完成
      */
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        log.info("Received from server msg:{} ", msg);
-        //todo 找到用户通道并转发消息
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        this.nettyServerService.added(ctx.channel());
     }
 
     /**
@@ -63,6 +53,14 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<String> {
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        this.nettyClientService.removed(ctx.channel());
+        this.nettyServerService.removed(ctx.channel());
+    }
+
+    /**
+     * 处理从客户端接收到的消息
+     */
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        //目前websocket服务只会往router服务发心跳包,所以不做处理
     }
 }

@@ -32,6 +32,7 @@
         <module>coder-chat-config</module>
         <module>coder-chat-web</module>
         <module>coder-chat-rpc</module>
+        <module>coder-chat-netty</module>
     </modules>
 
 

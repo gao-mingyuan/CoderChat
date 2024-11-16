@@ -1,6 +1,7 @@
-package com.gmy.coder.chat.websocket.websocket;
+package com.gmy.coder.chat.websocket.server;
 
 import cn.hutool.core.net.url.UrlBuilder;
+import com.gmy.coder.chat.netty.util.NettyUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
