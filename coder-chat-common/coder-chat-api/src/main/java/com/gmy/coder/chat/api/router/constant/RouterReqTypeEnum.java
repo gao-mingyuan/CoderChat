@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @Getter
 public enum RouterReqTypeEnum {
     HEARTBEAT(0, "心跳包"),
+    REGISTER(1, "服务注册"),
     ;
 
     private final Integer type;

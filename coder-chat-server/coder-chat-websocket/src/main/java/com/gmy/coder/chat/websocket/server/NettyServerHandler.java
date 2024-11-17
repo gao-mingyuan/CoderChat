@@ -1,6 +1,5 @@
 package com.gmy.coder.chat.websocket.server;
 
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.gmy.coder.chat.api.websocket.constant.WSReqTypeEnum;
 import com.gmy.coder.chat.api.websocket.request.WSBaseReq;
@@ -14,9 +13,11 @@ import io.netty.handler.timeout.IdleStateEvent;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import io.netty.channel.ChannelHandler.Sharable;
 
 @Slf4j
 @Component
+@Sharable
 public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
     @Resource
     private NettyServerService nettyServerService;
@@ -59,10 +60,10 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocke
             }
         } else if (evt instanceof WebSocketServerProtocolHandler.HandshakeComplete) {
             String token = NettyUtil.getAttr(ctx.channel(), NettyUtil.TOKEN);
-            if (StrUtil.isBlank(token)) {
-                log.error("token为空,断开连接");
-                ctx.channel().close();
-            }
+//            if (StrUtil.isBlank(token)) {
+//                log.error("token为空,断开连接");
+//                ctx.channel().close();
+//            }
         }
         super.userEventTriggered(ctx, evt);
     }
@@ -87,6 +88,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocke
             case HEARTBEAT:
                 break;
             case MESSAGE:
+                ctx.channel().writeAndFlush(msg.text());//测试
                 //todo 调用im服务dubbo接口将消息入库
                 break;
             default:

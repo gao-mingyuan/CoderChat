@@ -21,6 +21,9 @@ public class NettyServerService {
      */
     private final ConcurrentHashMap<String, Channel> ONLINE_CHANNEL_MAP = new ConcurrentHashMap<>();
 
+    public ConcurrentHashMap<String, Channel> getOnlineChannel() {
+        return ONLINE_CHANNEL_MAP;
+    }
 
     /**
      * 服务注册

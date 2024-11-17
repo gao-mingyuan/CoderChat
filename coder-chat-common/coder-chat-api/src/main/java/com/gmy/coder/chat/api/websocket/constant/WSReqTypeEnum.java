@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
 @Getter
 public enum WSReqTypeEnum {
     HEARTBEAT(0, "心跳包"),
-    MESSAGE(1,"新消息")
+    REGISTER(1, "服务注册"),
+    MESSAGE(2,"新消息")
     ;
 
     private final Integer type;

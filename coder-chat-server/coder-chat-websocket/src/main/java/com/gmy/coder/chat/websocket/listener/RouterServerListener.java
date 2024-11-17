@@ -62,7 +62,7 @@ public class RouterServerListener {
             String serverName = instance.getIp();
             ConnectionState state = routerMap.computeIfAbsent(serverName, k -> ConnectionState.WAITING_FOR_CONNECTION);
             if (state == ConnectionState.WAITING_FOR_CONNECTION) {
-                this.nettyClient.connect(instance.getIp(), instance.getPort());
+                this.nettyClient.connect(instance.getIp());
             }
         }
     }

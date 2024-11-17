@@ -28,11 +28,12 @@ public class NettyServerService {
      */
     public void online(Channel channel, String token) {
         //todo 完成auth模块 通过token查到id
-        Integer uid = 1;
+        Integer uid = (int) Math.random() * 100;
         this.ONLINE_USER_MAP.putIfAbsent(uid, new CopyOnWriteArrayList<>());
         this.ONLINE_USER_MAP.get(uid).add(channel);
         NettyUtil.setAttr(channel, NettyUtil.UID, uid);
-        //todo 上线推送
+        log.info("当前用户数:{}", ONLINE_USER_MAP.size());
+        //todo 1.用户连接到哪台服务更新到redis, 2.上线推送
     }
 
     /**
@@ -59,6 +60,17 @@ public class NettyServerService {
                 //todo 下线推送
             }
         }
+        log.info("当前用户数:{}", ONLINE_USER_MAP.size());
+    }
+
+    /**
+     * 接收路由服务推送消息到客户端
+     */
+    public void sendMessage(String message) {
+        //todo 根据uid推送
+        this.ONLINE_USER_MAP.forEach((k, v) -> {
+            v.forEach(channel -> channel.writeAndFlush(message));
+        });
     }
 
 }

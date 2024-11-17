@@ -1,22 +1,28 @@
 package com.gmy.coder.chat.websocket.client;
 
 import com.gmy.coder.chat.api.router.constant.RouterReqTypeEnum;
+import com.gmy.coder.chat.websocket.server.NettyServerService;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import io.netty.channel.ChannelHandler.Sharable;
 
 /**
  * @author gaomingyuan
  */
 @Slf4j
 @Component
-public class NettyClientHandler extends SimpleChannelInboundHandler<String> {
+@Sharable
+public class NettyClientHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
     @Resource
     private NettyClientService nettyClientService;
+    @Resource
+    private NettyServerService nettyServerService;
 
     /**
      * 连接建立完成
@@ -34,18 +40,18 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<String> {
         if (evt instanceof IdleStateEvent event) {
             if (event.state() == IdleState.WRITER_IDLE) {
                 // 发送心跳包给Router模块
-                ctx.writeAndFlush(RouterReqTypeEnum.HEARTBEAT.getType());
+                ctx.writeAndFlush(new TextWebSocketFrame(String.valueOf(RouterReqTypeEnum.HEARTBEAT.getType())));
             }
         }
         super.userEventTriggered(ctx, evt);
     }
 
     /**
-     * 处理从服务器接收到的消息
+     * 处理从路由服务器接收到的消息
      */
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        log.info("Received from server msg:{} ", msg);
+    protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
+        this.nettyServerService.sendMessage("路由服务器说:" + msg.text());
         //todo 找到用户通道并转发消息
     }
 

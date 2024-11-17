@@ -8,8 +8,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.codec.http.HttpObjectAggregator;
+import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
+import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.Future;
 import jakarta.annotation.PostConstruct;
@@ -41,9 +43,12 @@ public class NettyServer {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast(new IdleStateHandler(30, 0, 0));
-                        // 添加 StringDecoder 和 StringEncoder 用于处理字符串消息
-                        pipeline.addLast(new StringDecoder());
-                        pipeline.addLast(new StringEncoder());
+                        pipeline.addLast(new HttpServerCodec());
+                        pipeline.addLast(new ChunkedWriteHandler());
+                        pipeline.addLast(new HttpObjectAggregator(8192));
+                        //保存serverId
+                        pipeline.addLast(new HttpHeadersHandler());
+                        pipeline.addLast(new WebSocketServerProtocolHandler("/"));
                         // 添加自定义的 ChannelHandler
                         pipeline.addLast(nettyServerHandler);
                     }

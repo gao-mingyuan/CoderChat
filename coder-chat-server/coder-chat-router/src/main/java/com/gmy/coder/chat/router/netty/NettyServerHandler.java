@@ -1,7 +1,9 @@
 package com.gmy.coder.chat.router.netty;
 
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import jakarta.annotation.Resource;
@@ -12,8 +14,9 @@ import org.springframework.stereotype.Component;
  * @author gaomingyuan
  */
 @Slf4j
+@Sharable
 @Component
-public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
+public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
     @Resource
     private NettyServerService nettyServerService;
 
@@ -60,7 +63,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
      * 处理从客户端接收到的消息
      */
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         //目前websocket服务只会往router服务发心跳包,所以不做处理
     }
 }

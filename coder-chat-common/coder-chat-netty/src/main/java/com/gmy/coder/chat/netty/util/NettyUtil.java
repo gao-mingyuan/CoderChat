@@ -10,6 +10,7 @@ import io.netty.util.AttributeKey;
  * @author gaomingyuan
  */
 public class NettyUtil {
+    public static AttributeKey<String> SERVER_ID = AttributeKey.valueOf("serverId");
     public static AttributeKey<String> TOKEN = AttributeKey.valueOf("token");
     public static AttributeKey<String> IP = AttributeKey.valueOf("ip");
     public static AttributeKey<Integer> UID = AttributeKey.valueOf("uid");
