@@ -40,6 +40,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<TextWebSocke
         if (evt instanceof IdleStateEvent event) {
             if (event.state() == IdleState.WRITER_IDLE) {
                 // 发送心跳包给Router模块
+                log.info("发送心跳包~~");
                 ctx.writeAndFlush(new TextWebSocketFrame(String.valueOf(RouterReqTypeEnum.HEARTBEAT.getType())));
             }
         }
@@ -51,6 +52,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<TextWebSocke
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
+        log.info("收到路由服务器消息:{} ", msg.text());
         this.nettyServerService.sendMessage("路由服务器说:" + msg.text());
         //todo 找到用户通道并转发消息
     }
@@ -69,6 +71,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<TextWebSocke
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        log.info("连接关闭了~");
         this.nettyClientService.removed(ctx.channel());
     }
 }

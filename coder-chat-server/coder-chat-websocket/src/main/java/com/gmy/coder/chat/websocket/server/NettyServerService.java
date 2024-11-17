@@ -1,8 +1,10 @@
 package com.gmy.coder.chat.websocket.server;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.gmy.coder.chat.netty.util.NettyUtil;
 import io.netty.channel.Channel;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import java.util.Objects;
@@ -68,8 +70,9 @@ public class NettyServerService {
      */
     public void sendMessage(String message) {
         //todo 根据uid推送
+        log.info("准备推送给web,map:{}", JSONObject.toJSONString(ONLINE_USER_MAP));
         this.ONLINE_USER_MAP.forEach((k, v) -> {
-            v.forEach(channel -> channel.writeAndFlush(message));
+            v.forEach(channel -> channel.writeAndFlush(new TextWebSocketFrame(message)));
         });
     }
 

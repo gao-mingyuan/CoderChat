@@ -39,6 +39,8 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocke
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        log.info("连接成功");
+        ctx.channel().writeAndFlush(new TextWebSocketFrame("我是router"));
         this.nettyServerService.added(ctx.channel());
     }
 
@@ -56,6 +58,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocke
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        log.info("连接关闭");
         this.nettyServerService.removed(ctx.channel());
     }
 
@@ -65,5 +68,6 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocke
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         //目前websocket服务只会往router服务发心跳包,所以不做处理
+        log.info("收到ws消息:{}", msg.text());
     }
 }

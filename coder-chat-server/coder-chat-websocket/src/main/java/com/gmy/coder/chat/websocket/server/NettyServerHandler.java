@@ -88,7 +88,9 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocke
             case HEARTBEAT:
                 break;
             case MESSAGE:
-                ctx.channel().writeAndFlush(msg.text());//测试
+                //测试
+                this.nettyServerService.sendMessage(msg.text());
+//                ctx.channel().writeAndFlush(new TextWebSocketFrame(msg.text()));//测试
                 //todo 调用im服务dubbo接口将消息入库
                 break;
             default:
