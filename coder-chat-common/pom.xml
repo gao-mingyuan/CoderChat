@@ -33,6 +33,7 @@
         <module>coder-chat-web</module>
         <module>coder-chat-rpc</module>
         <module>coder-chat-netty</module>
+        <module>coder-chat-sa-token</module>
     </modules>
 
 

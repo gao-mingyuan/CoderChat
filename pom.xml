@@ -142,6 +142,11 @@
                 <artifactId>coder-chat-netty</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.gmy</groupId>
+                <artifactId>coder-chat-sa-token</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
