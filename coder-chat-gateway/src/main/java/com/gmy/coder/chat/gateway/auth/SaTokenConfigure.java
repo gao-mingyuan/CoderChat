@@ -47,17 +47,13 @@ public class SaTokenConfigure {
                 log.error("请先登录");
                 return SaResult.error("请先登录");
             case NotRoleException notRoleException:
-                if (UserRole.ADMIN.name().equals(notRoleException.getRole())) {
+                if (RoleEnum.ADMIN.name().equals(notRoleException.getRole())) {
                     log.error("请勿越权使用！");
                     return SaResult.error("请勿越权使用！");
                 }
                 log.error("您无权限进行此操作！");
                 return SaResult.error("您无权限进行此操作！");
             case NotPermissionException notPermissionException:
-                if (UserPermission.AUTH.name().equals(notPermissionException.getPermission())) {
-                    log.error("请先完成实名认证！");
-                    return SaResult.error("请先完成实名认证！");
-                }
                 log.error("您无权限进行此操作！");
                 return SaResult.error("您无权限进行此操作！");
             default:

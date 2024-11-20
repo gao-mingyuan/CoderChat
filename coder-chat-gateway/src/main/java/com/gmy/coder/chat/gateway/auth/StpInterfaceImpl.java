@@ -2,6 +2,8 @@ package com.gmy.coder.chat.gateway.auth;
 
 import cn.dev33.satoken.stp.StpInterface;
 import cn.dev33.satoken.stp.StpUtil;
+import com.gmy.coder.chat.api.logic.constant.RoleEnum;
+import com.gmy.coder.chat.api.logic.constant.UserStateEnum;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public class StpInterfaceImpl implements StpInterface {
         }
 
         if (userInfo.getState().equals(UserStateEnum.FROZEN.name())) {
-            return List.of(UserPermission.FROZEN.name());
+            return List.of(UserStateEnum.FROZEN.name());
         }
 
         return List.of(UserPermission.NONE.name());
@@ -35,9 +37,9 @@ public class StpInterfaceImpl implements StpInterface {
     @Override
     public List<String> getRoleList(Object loginId, String loginType) {
         UserInfo userInfo = (UserInfo) StpUtil.getSessionByLoginId(loginId).get((String) loginId);
-        if (userInfo.getUserRole() == UserRole.ADMIN) {
+        if (userInfo.getUserRole() == RoleEnum.ADMIN) {
             return List.of(UserRole.ADMIN.name());
         }
-        return List.of(UserRole.CUSTOMER.name());
+        return List.of(RoleEnum.CUSTOMER.name());
     }
 }
