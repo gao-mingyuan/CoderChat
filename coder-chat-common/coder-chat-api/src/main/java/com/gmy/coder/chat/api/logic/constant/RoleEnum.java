@@ -16,17 +16,17 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Getter
 public enum RoleEnum {
-    CUSTOMER(1L, "普通用户"),
-    ADMIN(2L, "超级管理员"),
+    CUSTOMER(1, "普通用户"),
+    ADMIN(2, "超级管理员"),
     ;
 
-    private final Long id;
+    private final Integer code;
     private final String desc;
 
-    private static final Map<Long, RoleEnum> cache;
+    private static final Map<Integer, RoleEnum> cache;
 
     static {
-        cache = Arrays.stream(RoleEnum.values()).collect(Collectors.toMap(RoleEnum::getId, Function.identity()));
+        cache = Arrays.stream(RoleEnum.values()).collect(Collectors.toMap(RoleEnum::getCode, Function.identity()));
     }
 
     public static RoleEnum of(Long type) {

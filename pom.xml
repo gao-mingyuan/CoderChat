@@ -29,6 +29,7 @@
     </parent>
 
     <modules>
+        <module>coder-chat-auth</module>
         <module>coder-chat-common</module>
         <module>coder-chat-server</module>
         <module>coder-chat-gateway</module>

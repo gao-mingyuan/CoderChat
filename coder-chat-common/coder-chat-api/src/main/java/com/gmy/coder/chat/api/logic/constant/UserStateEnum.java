@@ -21,13 +21,13 @@ public enum UserStateEnum {
 
     ;
 
-    private final Integer id;
+    private final Integer code;
     private final String desc;
 
     private static final Map<Integer, UserStateEnum> cache;
 
     static {
-        cache = Arrays.stream(UserStateEnum.values()).collect(Collectors.toMap(UserStateEnum::getId, Function.identity()));
+        cache = Arrays.stream(UserStateEnum.values()).collect(Collectors.toMap(UserStateEnum::getCode, Function.identity()));
     }
 
     public static UserStateEnum of(Long type) {
